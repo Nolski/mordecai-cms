@@ -1,0 +1,10 @@
+[run]
+branch = True
+omit = *migrations*,
+       *urls*,
+       *test*,
+       *admin*,
+       ./timemapper-cms/config/*,
+       ./timemapper-cms/manage.py,
+       ./timemapper-cms/wsgi.py,
+       *__init__*

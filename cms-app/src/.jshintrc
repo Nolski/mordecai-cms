@@ -1,0 +1,19 @@
+{
+    "curly":true,
+    "devel":true,
+    "node": true,
+    "globals":{
+        "angular": true,
+        "HL": true,
+        "window": true,
+        "$": true,
+        "document": true,
+        "window": true,
+        "Handlebars": true
+    },
+    "indent": 2,
+    "quotmark": "single",
+    "strict": true,
+    "trailing": true,
+    "undef": true
+}

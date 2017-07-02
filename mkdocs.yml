@@ -1,0 +1,11 @@
+site_name: timemapper-cms
+site_description: CMS for adding events to Time Mapper
+repo_url: https://github.com/nolski/timemapper-cms
+site_dir: site
+copyright: Copyright &copy; 2015, <a href="https://github.com/nolski">nolski</a>.
+
+pages:
+  - Home: 'index.md'
+  - API:
+    - Authentication: 'api/authentication.md'
+    - Users: 'api/users.md'

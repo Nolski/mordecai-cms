@@ -1,0 +1,40 @@
+language: python
+services:
+  - postgresql
+  - redis-server
+python:
+  - "2.7"
+before_script:
+- export DATABASE_URL=postgres://postgres@localhost/timemapper-cms
+- export DJANGO_SECRET=`openssl rand -base64 32`
+- psql -c 'CREATE DATABASE "timemapper-cms";' -U postgres
+install:
+  - "pip install -r requirements/test.txt"
+script:
+  - ./timemapper-cms/manage.py test timemapper-cms
+after_success:
+  - coveralls
+
+deploy:
+  provider: heroku
+  app:
+    master: timemapper-cms-dev
+    qa: timemapper-cms-qa
+    prod: timemapper-cms-prod
+  on:
+    repo: nolski/timemapper-cms
+  run:
+    - "./timemapper-cms/manage.py migrate"
+
+notifications:
+  email: false
+
+# This reportedly works around an issue downloading packages from pypi on
+# travis. Consider removing this after the underlying issue is fixed.
+# https://github.com/travis-ci/travis-ci/issues/2389
+sudo: false
+
+matrix:
+  fast_finish: true
+
+cache: pip
