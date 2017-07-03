@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}TimeMapper CMS{% endblock %}</title>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+  <link href="/static/css/main.css" rel="stylesheet">
+
+</head>
+<body class="homepage">
+  <div class="page-wrapper container">
+    <header class="title style1">
+      <h1>TimeMapper CMS</h1>
+      {% if user.is_authenticated %}
+        Hi {{ user.username }}!
+        <a href="{% url 'logout' %}">logout</a>
+      {% endif %}
+    </header>
+    <main class="style1">
+      {% block content %}
+      {% endblock %}
+    </main>
+  </div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 (function() {
     "use strict";
     jQuery(function($) {
-        fetch("/static/json/timemap.json").then(function(response) {
+        fetch("/api/v1/timemapper/1/").then(function(response) {
             response.json().then(function(json) {
                 var dataset = new recline.Model.Dataset({records: json});
                 var timemapper = new TimeMapperView({

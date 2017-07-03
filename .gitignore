@@ -26,3 +26,6 @@ pip-log.txt
 env
 venv
 site
+
+static/js/main.*
+static/css/main.*
