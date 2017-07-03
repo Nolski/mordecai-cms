@@ -1,18 +1,18 @@
 from __future__ import unicode_literals
 
 from django.conf import settings
-from django.urls import reverse_lazy
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic.base import RedirectView
 from rest_framework.routers import DefaultRouter
 
 from users.views import UserViewSet
+from timemapper.views import TimeMapViewSet
 from sites.views import HomeView, MapView, AboutView
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'timemap', TimeMapViewSet)
 
 print(settings.STATIC_ROOT, settings.STATIC_URL)
 

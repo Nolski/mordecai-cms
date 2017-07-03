@@ -27,6 +27,7 @@ class Common(Configuration):
         'authentication',
         'users',
         'site',
+        'timemapper',
     )
 
     # https://docs.djangoproject.com/en/1.10/topics/http/middleware/
