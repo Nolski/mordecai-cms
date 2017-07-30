@@ -3,7 +3,8 @@
   jQuery(function($) {
     fetch("/api/v1/timemap/1/").then(function(response) {
       response.json().then(function(json) {
-        var dataset = new recline.Model.Dataset({ records: json });
+        json.data.fields = Object.keys(json.data)
+        var dataset = new recline.Model.Dataset({ records: json.data });
         var timemapper = new TimeMapperView({
           model: dataset,
           datapackage: VIZDATA,
@@ -55,7 +56,6 @@
 
       // now load the data
       this.model.fetch().done(function() {
-        debugger;
         self.model.query({ size: self.model.recordCount }).done(function() {
           self._dataChanges();
           self._setStartPosition();
