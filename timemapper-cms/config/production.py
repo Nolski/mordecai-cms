@@ -1,5 +1,6 @@
 from configurations import values
 from .common import Common
+import dj_database_url
 
 
 class Production(Common):
@@ -8,6 +9,7 @@ class Production(Common):
     for config in Common.TEMPLATES:
         config['OPTIONS']['debug'] = DEBUG
 
+    DATABASES['default'] =  dj_database_url.config()
     ALLOWED_HOSTS = ["*"]
 
     INSTALLED_APPS = Common.INSTALLED_APPS
