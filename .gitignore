@@ -9,7 +9,6 @@ coverage/
 .tox
 nosetests.xml
 build/
-dist/
 *.egg-info/
 MANIFEST
 

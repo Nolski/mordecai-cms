@@ -28,3 +28,14 @@ class Local(Common):
     EMAIL_HOST = 'localhost'
     EMAIL_PORT = 1025
     EMAIL_BACKEND = values.Value('django.core.mail.backends.console.EmailBackend')
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'timemapper_cms',
+            'USER': 'nolski',
+            'PASSWORD': '',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
+    }
