@@ -20,7 +20,6 @@ class Common(Configuration):
         # Third party apps
         'rest_framework',            # utilities for rest apis
         'rest_framework.authtoken',  # token authentication
-        'django_rq',                 # asynchronous queuing
         'versatileimagefield',       # image manipulation
 
         # Your apps
@@ -42,8 +41,6 @@ class Common(Configuration):
     )
 
     ROOT_URLCONF = 'urls'
-
-    SECRET_KEY = 'Not a secret'
     WSGI_APPLICATION = 'wsgi.application'
 
     # Email
@@ -80,6 +77,7 @@ class Common(Configuration):
     # Static Files
     STATIC_ROOT = join(os.path.dirname(BASE_DIR), 'staticfiles')
     STATICFILES_DIRS = [join(os.path.dirname(BASE_DIR), 'static'), ]
+    TEMPLATE_DIRS = [join(os.path.dirname(BASE_DIR), 'timemapper-cms/templates'), ]
     STATIC_URL = '/static/'
     STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -93,7 +91,7 @@ class Common(Configuration):
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': STATICFILES_DIRS + [os.path.dirname(BASE_DIR), 'templates'],
+            'DIRS': [os.path.dirname(BASE_DIR)] + STATICFILES_DIRS + TEMPLATE_DIRS,
             'OPTIONS': {
                 'context_processors': [
                     'django.contrib.auth.context_processors.auth',
@@ -210,7 +208,7 @@ class Common(Configuration):
     # Django Rest Framework
     REST_FRAMEWORK = {
         'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-        'PAGE_SIZE': int(os.getenv('DJANGO_PAGINATION_LIMIT', 10)),
+        'PAGE_SIZE': int(os.getenv('DJANGO_PAGINATION_LIMIT', 100)),
         'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%S%z',
         'DEFAULT_RENDERER_CLASSES': (
             'rest_framework.renderers.JSONRenderer',
@@ -221,7 +219,6 @@ class Common(Configuration):
         ],
         'DEFAULT_AUTHENTICATION_CLASSES': (
             'rest_framework.authentication.SessionAuthentication',
-            'rest_framework.authentication.TokenAuthentication',
         )
     }
 
@@ -237,9 +234,3 @@ class Common(Configuration):
         'placeholder_directory_name': '__placeholder__',
         'create_images_on_demand': False
     }
-
-    # django-rq
-    # Adds dashboard link for queues in /admin, This will override the default
-    # admin template so it may interfere with other apps that modify the
-    # default admin template. If you're using such an app, simply remove this.
-    RQ_SHOW_ADMIN_LINK = True

@@ -1,3 +1,6 @@
+body {
+    background: #282b34;
+}
 .footerWrapper {
     height: 100vh;
     background: red;
