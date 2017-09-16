@@ -26,6 +26,9 @@ django_unique_upload==0.2.1
 # Image manipulation
 django-versatileimagefield==1.7.0
 
+# Tests
+django-nose==1.4.5
+
 # For asynchronous queuing
 django-rq==0.9.5
 
