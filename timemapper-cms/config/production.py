@@ -9,6 +9,7 @@ class Production(Common):
     for config in Common.TEMPLATES:
         config['OPTIONS']['debug'] = DEBUG
 
+    DATABASES = Common.DATABASES
     DATABASES['default'] =  dj_database_url.config()
     ALLOWED_HOSTS = ["*"]
 
