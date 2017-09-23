@@ -55,17 +55,9 @@ class Common(Configuration):
 
     # Postgres
     # DATABASES = values.DatabaseURLValue('postgres://localhost/timemapper-cms')
-    DATABASES['default'] =  dj_database_url.config()
 
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'timemapper_cms',
-            'USER': 'nolski',
-            'PASSWORD': '',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
+        'default': dj_database_url.config()
     }
 
     # General
