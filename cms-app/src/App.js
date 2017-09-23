@@ -4,6 +4,22 @@ import css from "./App.css";
 import EventList from "./EventList.js";
 import EventDetail from "./EventDetail.js";
 
+const emptyEvent = {
+  description: "",
+  end: "",
+  location: "",
+  media: "",
+  media_credit: "",
+  metadata: "",
+  place: "",
+  pos: 0,
+  source: "",
+  source_url: "",
+  start: "",
+  title: "New Event",
+  video: "",
+}
+
 class App extends Component {
   constructor() {
     super();
@@ -45,6 +61,11 @@ class App extends Component {
            this.setState({timemaps: [newMap]});
        });
   }
+  addEvent() {
+    let newMap = this.state.timemaps
+    newMap[0].data.push(emptyEvent)
+    this.setState({timemaps: newMap}, () => this.selectItem(newMap[0].data.length - 1))
+  }
 
   selectItem(id) {
       const event = this.state.timemaps[0]
@@ -63,7 +84,10 @@ class App extends Component {
         </header>
         <div className="row">
           <div className="3u">
-            <EventList {...event} selectItem={this.selectItem.bind(this)}/>
+            <EventList {...event}
+              selectItem={this.selectItem.bind(this)}
+              addEvent={this.addEvent.bind(this)}
+            />
           </div>
           <div className="9u">
               <EventDetail onSubmit={this.saveItem.bind(this)}
