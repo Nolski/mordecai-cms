@@ -8,7 +8,7 @@
     "formsy-react-components": "^0.10.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-notification": "^6.8.0"
+    "react-notification-system": "^0.2.15"
   },
   "devDependencies": {
     "react-scripts": "1.0.10"
