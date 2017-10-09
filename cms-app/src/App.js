@@ -58,18 +58,7 @@ class App extends Component {
     return map
   }
 
-  deleteItem(event, pos) {
-    let newMap = this.state.timemaps[0]
-    Alert.closeAll();
-  }
-
-  saveItem(event, pos) {
-    let newMap = this.state.timemaps[0]
-    Alert.closeAll();
-
-    newMap.data[pos] = event
-    newMap = this._sortMap(newMap)
-
+  _updateMap(newMap) {
     updateTimeMap(newMap, this.csrfToken)
       .then(response => {
         if (!response.ok) {
@@ -97,14 +86,30 @@ class App extends Component {
       });
 
   }
+
+  saveItem(event, pos) {
+    let newMap = this.state.timemaps[0]
+    Alert.closeAll();
+
+    newMap.data[pos] = event
+    newMap = this._sortMap(newMap)
+    this._updateMap(newMap)
+  }
   addEvent() {
     let newMap = this.state.timemaps
     newMap[0].data.push(emptyEvent)
     this.setState({timemaps: newMap}, () => this.selectItem(newMap[0].data.length - 1))
   }
+  deleteEvent(pos) {
+    let newMap = this.state.timemaps[0]
+    Alert.closeAll();
+    newMap.data.splice(pos, 1)
+    this.setState({timemaps: newMap})
+    this._updateMap(newMap)
+  }
   selectItem(id) {
-    const event = this.state.timemaps[0]
-    this.setState({ selectedMap: {...event.data[id], pos: id} })
+    const map = this.state.timemaps[0]
+    this.setState({ selectedMap: {...map.data[id], pos: id} })
   }
 
   render() {
@@ -122,6 +127,7 @@ class App extends Component {
             <EventList {...event}
               selectItem={this.selectItem.bind(this)}
               addEvent={this.addEvent.bind(this)}
+              deleteEvent={this.deleteEvent.bind(this)}
             />
           </div>
           <div className="9u">

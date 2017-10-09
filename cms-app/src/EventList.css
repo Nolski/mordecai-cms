@@ -14,3 +14,14 @@
     background: #1b1d23;
     cursor: pointer;
 }
+
+.close-event {
+  float: right;
+  color: #FFF;
+  opacity: .2;
+}
+
+.close-event:hover {
+  color: #FFF;
+  opacity: .5;
+}

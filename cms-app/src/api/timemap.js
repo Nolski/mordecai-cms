@@ -1,5 +1,3 @@
-import Alert from 'react-s-alert';
-
 export function updateTimeMap(newMap, csrfToken) {
     return fetch("/api/v1/timemap/1/",
           {
