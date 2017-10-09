@@ -101,10 +101,14 @@ class App extends Component {
     this.setState({timemaps: newMap}, () => this.selectItem(newMap[0].data.length - 1))
   }
   deleteEvent(pos) {
+    if (!window.confirm("This will totally delete this event and it will be gone forever if you click OK. So totally press cancel if you don't want this to happen!")) {
+      return
+    }
+
     let newMap = this.state.timemaps[0]
     Alert.closeAll();
     newMap.data.splice(pos, 1)
-    this.setState({timemaps: newMap})
+      this.setState({timemaps: newMap})
     this._updateMap(newMap)
   }
   selectItem(id) {
