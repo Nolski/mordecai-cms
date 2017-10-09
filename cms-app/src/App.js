@@ -4,6 +4,7 @@ import Alert from 'react-s-alert';
 import css from "./App.css";
 import EventList from "./EventList.js";
 import EventDetail from "./EventDetail.js";
+import { updateTimeMap } from "./api/timemap";
 
 const emptyEvent = {
   description: "",
@@ -45,36 +46,47 @@ class App extends Component {
               })
            });
   }
+  componentDidUpdate() {
+    Alert.closeAll();
+  }
+
+  _sortMap(map) {
+    map.data = map.data.sort((a, b) => {
+      return new Date(a.start).getTime() - new Date(b.start).getTime()
+    })
+
+    return map
+  }
+
+  deleteItem(event, pos) {
+    let newMap = this.state.timemaps[0]
+    Alert.closeAll();
+  }
 
   saveItem(event, pos) {
     let newMap = this.state.timemaps[0]
     Alert.closeAll();
 
     newMap.data[pos] = event
-    fetch("/api/v1/timemap/1/",
-          {
-            method: 'PUT',
-            body: JSON.stringify(newMap),
-            credentials: 'include',
-            headers: {
-              'X-CSRFToken': this.csrfToken,
-              'Content-Type': 'application/json',
-            },
-          })
+    newMap = this._sortMap(newMap)
+
+    updateTimeMap(newMap, this.csrfToken)
       .then(response => {
         if (!response.ok) {
           throw(response);
         }
-        this.setState({timemaps: [newMap]});
-        Alert.success('Information saved', {
-          position: 'top-right',
-          effect: 'scale',
-          beep: false,
-          timeout: 2000,
-          onClose: Alert.closeAll(),
-        });
+        response.json().then(json => {
+          this.setState({ timemaps: [json] });
+          Alert.success('Information saved', {
+            position: 'top-right',
+            effect: 'scale',
+            beep: false,
+            timeout: 2000,
+            onClose: Alert.closeAll(),
+          });
+        })
       })
-      .catch(() => {
+      .catch((e) => {
         Alert.error('Error saving information', {
           position: 'top-right',
           effect: 'scale',
@@ -83,6 +95,7 @@ class App extends Component {
           onClose: Alert.closeAll(),
         });
       });
+
   }
   addEvent() {
     let newMap = this.state.timemaps
@@ -99,7 +112,6 @@ class App extends Component {
     if (!event) {
       return null;
     }
-    Alert.closeAll();
     return (
       <div id="footer-wrapper" className="footerWrapper" ref="asdf">
         <header className="style1">
