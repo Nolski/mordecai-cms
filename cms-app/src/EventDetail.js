@@ -1,4 +1,6 @@
 import { Form, Input, Textarea } from 'formsy-react-components';
+import Alert from 'react-s-alert';
+
 import css from "./EventDetail.css";
 import React, { Component } from "react";
 

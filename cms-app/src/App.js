@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import css from "./App.css";
+import Alert from 'react-s-alert';
 
+import css from "./App.css";
 import EventList from "./EventList.js";
 import EventDetail from "./EventDetail.js";
 
@@ -30,46 +31,67 @@ class App extends Component {
   }
 
   componentDidMount() {
-      try {
-        const cookie = document.cookie.split(';').find(a => a.trim().startsWith('csrftoken='))
-        this.csrfToken = cookie.split('csrftoken=')[1];
-      } catch (e) {
-        console.error('CSRF Token not found in cookies, please log out')
-      }
+    try {
+      const cookie = document.cookie.split(';').find(a => a.trim().startsWith('csrftoken='))
+      this.csrfToken = cookie.split('csrftoken=')[1];
+    } catch (e) {
+      console.error('CSRF Token not found in cookies, please log out')
+    }
 
-      fetch("/api/v1/timemap/1/").then(response => {
-      response.json().then(json => {
-        this.setState({ timemaps: [json] });
-      });
-    });
+    fetch("/api/v1/timemap/1/")
+           .then(response => {
+              response.json().then(json => {
+                this.setState({ timemaps: [json] });
+              })
+           });
   }
 
   saveItem(event, pos) {
-      let newMap = this.state.timemaps[0]
-      newMap.data[pos] = event
-      fetch("/api/v1/timemap/1/",
-            {
-                method: 'PUT',
-                body: JSON.stringify(newMap),
-                credentials: 'include',
-                headers: {
-                    'X-CSRFToken': this.csrfToken,
-                    'Content-Type': 'application/json',
-                },
-            })
-       .then(response => {
-           this.setState({timemaps: [newMap]});
-       });
+    let newMap = this.state.timemaps[0]
+    Alert.closeAll();
+
+    newMap.data[pos] = event
+    fetch("/api/v1/timemap/1/",
+          {
+            method: 'PUT',
+            body: JSON.stringify(newMap),
+            credentials: 'include',
+            headers: {
+              'X-CSRFToken': this.csrfToken,
+              'Content-Type': 'application/json',
+            },
+          })
+      .then(response => {
+        if (!response.ok) {
+          throw(response);
+        }
+        this.setState({timemaps: [newMap]});
+        Alert.success('Information saved', {
+          position: 'top-right',
+          effect: 'scale',
+          beep: false,
+          timeout: 2000,
+          onClose: Alert.closeAll(),
+        });
+      })
+      .catch(() => {
+        Alert.error('Error saving information', {
+          position: 'top-right',
+          effect: 'scale',
+          beep: false,
+          timeout: 2000,
+          onClose: Alert.closeAll(),
+        });
+      });
   }
   addEvent() {
     let newMap = this.state.timemaps
     newMap[0].data.push(emptyEvent)
     this.setState({timemaps: newMap}, () => this.selectItem(newMap[0].data.length - 1))
   }
-
   selectItem(id) {
-      const event = this.state.timemaps[0]
-      this.setState({ selectedMap: {...event.data[id], pos: id} })
+    const event = this.state.timemaps[0]
+    this.setState({ selectedMap: {...event.data[id], pos: id} })
   }
 
   render() {
@@ -77,8 +99,9 @@ class App extends Component {
     if (!event) {
       return null;
     }
+    Alert.closeAll();
     return (
-      <div id="footer-wrapper" className="footerWrapper">
+      <div id="footer-wrapper" className="footerWrapper" ref="asdf">
         <header className="style1">
           <h2>TimeMapper CMS</h2>
         </header>
@@ -90,8 +113,8 @@ class App extends Component {
             />
           </div>
           <div className="9u">
-              <EventDetail onSubmit={this.saveItem.bind(this)}
-                           selectedMap={this.state.selectedMap}/>
+            <EventDetail onSubmit={this.saveItem.bind(this)}
+              selectedMap={this.state.selectedMap}/>
           </div>
         </div>
       </div>
