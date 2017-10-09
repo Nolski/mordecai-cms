@@ -1,0 +1,5 @@
+#footer-wrapper form input[type="text"],
+#footer-wrapper form input[type="date"],
+#footer-wrapper form input[type="url"] {
+  height: 3em;
+}

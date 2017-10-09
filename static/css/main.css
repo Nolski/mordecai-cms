@@ -2032,3 +2032,10 @@ ol.default {
     line-height: normal; }
 
 /*# sourceMappingURL=main.css.map */
+
+form input[type="text"],
+form input[type="date"],
+form input[type="password"],
+form input[type="url"] {
+  height: 3em;
+}

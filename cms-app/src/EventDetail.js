@@ -1,4 +1,5 @@
 import { Form, Input, Textarea } from 'formsy-react-components';
+import css from "./EventDetail.css";
 import React, { Component } from "react";
 
 export default ({selectedMap, onSubmit}) => {
