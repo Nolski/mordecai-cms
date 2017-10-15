@@ -1,4 +1,4 @@
-#timemapper-cms
+# Mordcai Marches to Manchuria
 [![Build Status](https://travis-ci.org/nolski/timemapper-cms.svg?branch=master)](https://travis-ci.org/nolski/timemapper-cms)
 
 CMS for adding events to Time Mapper. Check out the project's [documentation](http://nolski.github.io/timemapper-cms/).

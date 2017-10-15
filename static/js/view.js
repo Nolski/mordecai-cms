@@ -226,7 +226,8 @@
       this.timeline = new recline.View.Timeline({
         model: this.model,
         el: this.$el.find(".timeline"),
-        state: this.timelineState
+        state: this.timelineState,
+        elementId: '.timeline',
       });
 
       // convert the record to a structure suitable for timeline.js

@@ -2293,6 +2293,9 @@ my.Map = Backbone.View.extend({
     var osmAttribution = 'Map data &copy; 2011 OpenStreetMap contributors, Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">';
     var bg = new L.TileLayer(mapUrl, {maxZoom: 18, attribution: osmAttribution ,subdomains: '1234'});
     this.map.addLayer(bg);
+      var wmsLayer = L.tileLayer.wms('http://worldmap.harvard.edu/geoserver/geonode/geonode:1745west/wms?tiled=true&service=WMS&request=GetCapabilities', {
+        layers: '1745west'
+    }).addTo(this.map);
 
     this.markers = new L.MarkerClusterGroup(this._clusterOptions);
 
@@ -3667,10 +3670,6 @@ this.recline.View = this.recline.View || {};
 
 (function($, my) {
   "use strict";
-// turn off unnecessary logging from VMM Timeline
-if (typeof VMM !== 'undefined') {
-  VMM.debug = false;
-}
 
 // ## Timeline
 //
@@ -3741,7 +3740,7 @@ my.Timeline = Backbone.View.extend({
   reloadData: function() {
     if (this._timelineIsInitialized) {
       var data = this._timelineJSON();
-      // this.timeline.reload(data);
+      this.timeline.reload(data);
     }
   },
 
@@ -3767,7 +3766,8 @@ my.Timeline = Backbone.View.extend({
         "text": {
           "headline": String(record.get('title') || ''),
           "text": record.get('description') || record.summary()
-        }
+        },
+        "tag": record.get('tags')
       };
       if (end) {
         d = moment(end);
@@ -3775,7 +3775,7 @@ my.Timeline = Backbone.View.extend({
           "year": d.year(),
           "month": d.month(),
           "day": d.date()
-        }
+        };
       }
       return tlEntry;
     } else {
@@ -3795,7 +3795,6 @@ my.Timeline = Backbone.View.extend({
     };
     this.model.records.each(function(record) {
       var newEntry = self.convertRecord(record, self.fields);
-      // console.log('newEntry', newEntry);
       if (newEntry) {
         out.timeline.events.push(newEntry); 
       }

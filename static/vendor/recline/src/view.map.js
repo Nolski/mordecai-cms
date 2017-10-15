@@ -465,6 +465,9 @@ my.Map = Backbone.View.extend({
     var osmAttribution = 'Map data &copy; 2011 OpenStreetMap contributors, Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">';
     var bg = new L.TileLayer(mapUrl, {maxZoom: 18, attribution: osmAttribution ,subdomains: '1234'});
     this.map.addLayer(bg);
+      var wmsLayer = L.tileLayer.wms('http://worldmap.harvard.edu/geoserver/geonode/geonode:1745west/wms?tiled=true&service=WMS&request=GetCapabilities', {
+        layers: '1745west'
+    }).addTo(this.map);
 
     this.markers = new L.MarkerClusterGroup(this._clusterOptions);
 
