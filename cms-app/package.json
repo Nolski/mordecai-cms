@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:8000",
+  "license": "GPLv3",
   "dependencies": {
     "formsy-react": "^0.19.5",
     "formsy-react-components": "^0.10.1",
     "install": "^0.10.1",
+    "moment": "^2.19.1",
     "npm": "^5.4.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
