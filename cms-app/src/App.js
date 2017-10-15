@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Alert from 'react-s-alert';
+import moment from 'moment';
 
 import css from "./App.css";
 import EventList from "./EventList.js";
@@ -52,9 +53,8 @@ class App extends Component {
 
   _sortMap(map) {
     map.data = map.data.sort((a, b) => {
-      return new Date(a.start).getTime() - new Date(b.start).getTime()
+      return moment.utc(a.start).diff(moment.utc(b.start))
     })
-
     return map
   }
 
