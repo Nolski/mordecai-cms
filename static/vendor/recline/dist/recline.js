@@ -3764,7 +3764,7 @@ my.Timeline = Backbone.View.extend({
       var tlEntry = {
         "start_date": {
           "year": d.year(),
-          "month": d.month(),
+          "month": d.month() + 1,
           "day": d.date()
         },
         "text": {
