@@ -69,6 +69,7 @@ my.Timeline = Backbone.View.extend({
     config.id = this.elementId;
     $('#vmm-timeline-id').height('100%');
     this.timeline = new TL.Timeline('vmm-timeline-id', data.timeline);
+
     this._timelineIsInitialized = true;
   },
 
