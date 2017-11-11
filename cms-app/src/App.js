@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import Alert from 'react-s-alert';
 import moment from 'moment';
 
@@ -21,6 +23,39 @@ const emptyEvent = {
   start: "",
   title: "New Event",
   video: "",
+}
+
+class Description extends Component {
+  render() {
+    const { text, location, census, notes, media, sources } = this.props
+    const cList = census && census.split('\n').map((c, i) => <li key={i}>{c}</li>)
+    const sList = sources && sources.split('\n').map((s, i) => <li key={i}>{s}</li>)
+    const mList = media && media.split('\n').map((m, i) => <li key={i}>{m}</li>)
+    return (
+      <div>
+        <p><strong>Location:</strong> {location}</p>
+        <p>{text}</p>
+        {census &&
+        <div><strong>Census Data:</strong><br/>
+           {cList}</div>}
+        {notes && <p><strong>Notes:</strong><br />
+          {notes}</p>}
+
+        {sources && <div><strong>Additional Sources:</strong><br/>
+           {sList}</div>}
+        {media && <div><strong>Additional Media:</strong><br/>
+           {mList}</div>}
+      </div>
+    )
+  }
+}
+Description.propTypes = {
+  text: PropTypes.string.isRequired,
+  location: PropTypes.string,
+  census: PropTypes.string,
+  notes: PropTypes.string,
+  media: PropTypes.string,
+  sources: PropTypes.string,
 }
 
 class App extends Component {
@@ -86,10 +121,27 @@ class App extends Component {
       });
 
   }
+  _getDescription(event) {
+    let a = document.createElement('div')
+
+    ReactDOM.render(
+      <Description
+        location={event.location}
+        census={event.description_census}
+        notes={event.description_notes}
+        media={event.description_media}
+        sources={event.description_sources}
+        text={event.description_text} />,
+      a
+    )
+
+    return a.outerHTML
+  }
 
   saveItem(event, pos) {
     let newMap = this.state.timemaps[0]
     Alert.closeAll();
+    event.description = this._getDescription(event)
 
     newMap.data[pos] = event
     newMap = this._sortMap(newMap)

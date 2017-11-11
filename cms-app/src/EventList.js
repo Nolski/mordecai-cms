@@ -34,10 +34,10 @@ class EventList extends Component {
         const { name, data, selectItem, addEvent, deleteEvent } = this.props
         const eventComponents = data.map(event => {
             count++
-                   return <Event {...event}
-                            id={count}
-                            selectItem={selectItem}
-                            deleteEvent={deleteEvent} />
+            return <Event {...event}
+                     id={count}
+                     selectItem={selectItem}
+                     deleteEvent={deleteEvent} />
         })
         return (
             <div>
