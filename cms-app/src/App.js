@@ -88,6 +88,8 @@ class App extends Component {
 
   _sortMap(map) {
     map.data = map.data.sort((a, b) => {
+      const aSort = a.sort || 0
+      const bSort = b.sort || 0
       return moment.utc(a.start).diff(moment.utc(b.start))
     })
     return map

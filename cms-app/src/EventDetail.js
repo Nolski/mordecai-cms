@@ -9,7 +9,7 @@ export default ({selectedMap, onSubmit}) => {
     const { title, description, location, start, end,
             media, media_credit, source, source_url, place, video,
             metadata, pos, description_census, description_notes,
-            description_media, description_sources } = selectedMap
+            description_media, description_sources, sort } = selectedMap
     let description_text = selectedMap.description_text
     if (!description_text) {
       description_text = description
@@ -70,6 +70,10 @@ export default ({selectedMap, onSubmit}) => {
           type="date"
           required
           label="Start Date" />
+        <Input
+          name="sort"
+          value={sort || 0}
+          label="Date Sort" />
         <Input
           name="end"
           value={end || ""}
