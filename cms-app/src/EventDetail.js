@@ -67,7 +67,6 @@ export default ({selectedMap, onSubmit}) => {
         <Input
           name="location_name"
           value={location_name || ""}
-          required
           label="Modern Location Name" />
         <Input
           name="start"

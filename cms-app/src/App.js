@@ -91,7 +91,7 @@ class App extends Component {
       const aSort = a.sort || 0
       const bSort = b.sort || 0
       if (moment.utc(a.start).diff(moment.utc(b.start)) === 0) {
-        return aSort < bSort
+        return aSort - bSort
       }
       return moment.utc(a.start).diff(moment.utc(b.start))
     })
