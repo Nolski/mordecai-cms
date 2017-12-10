@@ -137,6 +137,7 @@ class App extends Component {
         media={event.description_media}
         sources={event.description_sources}
         text={event.description_text} />,
+      a
     )
 
     return a.outerHTML
