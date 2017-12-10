@@ -51,7 +51,7 @@ class Description extends Component {
 }
 Description.propTypes = {
   text: PropTypes.string.isRequired,
-  location: PropTypes.string,
+  location_name: PropTypes.string,
   census: PropTypes.string,
   notes: PropTypes.string,
   media: PropTypes.string,
@@ -131,13 +131,12 @@ class App extends Component {
 
     ReactDOM.render(
       <Description
-        location={event.location}
+        location_name={event.location_name}
         census={event.description_census}
         notes={event.description_notes}
         media={event.description_media}
         sources={event.description_sources}
         text={event.description_text} />,
-      a
     )
 
     return a.outerHTML
