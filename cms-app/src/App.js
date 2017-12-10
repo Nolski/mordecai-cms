@@ -31,6 +31,7 @@ class Description extends Component {
     const cList = census && census.split('\n').map((c, i) => <div key={i}>{c}</div>)
     const sList = sources && sources.split('\n').map((s, i) => <div key={i}>{s}</div>)
     const mList = media && media.split('\n').map((m, i) => <div key={i}>{m}</div>)
+    const noteList = notes && notes.split('\n').map((n, i) => <p key={i}>{n}</p>)
     return (
       <div>
         {place && <p><strong>Location:</strong> {place}</p>}
@@ -39,7 +40,7 @@ class Description extends Component {
         <div><strong>Census Data:</strong><br/>
            {cList}</div>}
         {notes && <p><strong>Notes:</strong><br />
-          {notes}</p>}
+          {noteList}</p>}
 
         {sources && <div><strong>Additional Sources:</strong><br/>
            {sList}</div>}
