@@ -6,7 +6,7 @@ import React from "react";
 export default ({selectedMap, onSubmit}) => {
     if (!selectedMap) return null
 
-    const { title, description, location, start, end,
+    const { title, description, location, location_name, start, end,
             media, media_credit, source, source_url, place, video,
             metadata, pos, description_census, description_notes,
             description_media, description_sources, sort } = selectedMap
@@ -64,6 +64,11 @@ export default ({selectedMap, onSubmit}) => {
           required
           help="Format like: '49.038315, 28.107158'"
           label="Location" />
+        <Input
+          name="location_name"
+          value={location_name || ""}
+          required
+          label="Modern Location Name" />
         <Input
           name="start"
           value={start|| ""}

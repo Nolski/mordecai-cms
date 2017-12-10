@@ -27,13 +27,13 @@ const emptyEvent = {
 
 class Description extends Component {
   render() {
-    const { text, location, census, notes, media, sources } = this.props
-    const cList = census && census.split('\n').map((c, i) => <li key={i}>{c}</li>)
-    const sList = sources && sources.split('\n').map((s, i) => <li key={i}>{s}</li>)
-    const mList = media && media.split('\n').map((m, i) => <li key={i}>{m}</li>)
+    const { text, location_name, census, notes, media, sources } = this.props
+    const cList = census && census.split('\n').map((c, i) => <div key={i}>{c}</div>)
+    const sList = sources && sources.split('\n').map((s, i) => <div key={i}>{s}</div>)
+    const mList = media && media.split('\n').map((m, i) => <div key={i}>{m}</div>)
     return (
       <div>
-        <p><strong>Location:</strong> {location}</p>
+        {location_name && <p><strong>Location:</strong> {location_name}</p>}
         <p>{text}</p>
         {census &&
         <div><strong>Census Data:</strong><br/>
@@ -90,6 +90,9 @@ class App extends Component {
     map.data = map.data.sort((a, b) => {
       const aSort = a.sort || 0
       const bSort = b.sort || 0
+      if (moment.utc(a.start).diff(moment.utc(b.start)) === 0) {
+        return aSort < bSort
+      }
       return moment.utc(a.start).diff(moment.utc(b.start))
     })
     return map
