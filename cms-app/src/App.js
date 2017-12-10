@@ -27,13 +27,13 @@ const emptyEvent = {
 
 class Description extends Component {
   render() {
-    const { text, location_name, census, notes, media, sources } = this.props
+    const { text, place, census, notes, media, sources } = this.props
     const cList = census && census.split('\n').map((c, i) => <div key={i}>{c}</div>)
     const sList = sources && sources.split('\n').map((s, i) => <div key={i}>{s}</div>)
     const mList = media && media.split('\n').map((m, i) => <div key={i}>{m}</div>)
     return (
       <div>
-        {location_name && <p><strong>Location:</strong> {location_name}</p>}
+        {place && <p><strong>Location:</strong> {place}</p>}
         <p>{text}</p>
         {census &&
         <div><strong>Census Data:</strong><br/>
@@ -51,7 +51,7 @@ class Description extends Component {
 }
 Description.propTypes = {
   text: PropTypes.string.isRequired,
-  location_name: PropTypes.string,
+  place: PropTypes.string,
   census: PropTypes.string,
   notes: PropTypes.string,
   media: PropTypes.string,
@@ -131,7 +131,7 @@ class App extends Component {
 
     ReactDOM.render(
       <Description
-        location_name={event.location_name}
+        place={event.place}
         census={event.description_census}
         notes={event.description_notes}
         media={event.description_media}
