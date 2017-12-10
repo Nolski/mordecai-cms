@@ -48,14 +48,7 @@ export default ({selectedMap, onSubmit}) => {
           cols={40}
           value={description_media|| ""}
           name="description_media"
-          label="Additional Media"
-        />
-        <Textarea
-          rows={3}
-          cols={40}
-          value={description_sources|| ""}
-          name="description_sources"
-          label="Additional Sources"
+          label="Additional Media Links"
         />
 
         <Input
@@ -63,7 +56,11 @@ export default ({selectedMap, onSubmit}) => {
           value={location || ""}
           required
           help="Format like: '49.038315, 28.107158'"
-          label="Location" />
+          label="GIS/ Lat & Long" />
+        <Input
+          name="place"
+          value={place || ""}
+          label="Modern Spellings/Names" />
         <Input
           name="start"
           value={start|| ""}
@@ -83,35 +80,14 @@ export default ({selectedMap, onSubmit}) => {
           name="media"
           value={media || ""}
           type="url"
-          label="Media URL" />
-        <Input
-          name="media_credit"
-          value={media_credit || ""}
-          label="Media Credit" />
-        <Input
-          name="source"
-          value={source || ""}
-          label="Source" />
-        <Input
-          name="source_url"
-          value={source_url || ""}
-          type="url"
-          label="Source URL" />
-        <Input
-          name="place"
-          value={place || ""}
-          label="Location Name" />
+          label="Diary Scan URL" />
         <Textarea
           rows={3}
           cols={40}
-          value={metadata || ""}
-          name="metadata"
-          label="Metadata"
+          value={description_sources|| ""}
+          name="description_sources"
+          label="Additional Sources"
         />
-        <Input
-          name="video"
-          value={video|| ""}
-          label="Video URL" />
         <input type="submit" defaultValue="Submit" />
       </Form>
     )
