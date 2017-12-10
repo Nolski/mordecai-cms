@@ -50,17 +50,6 @@ export default ({selectedMap, onSubmit}) => {
           name="description_media"
           label="Additional Media Links"
         />
-
-        <Input
-          name="location"
-          value={location || ""}
-          required
-          help="Format like: '49.038315, 28.107158'"
-          label="GIS/ Lat & Long" />
-        <Input
-          name="place"
-          value={place || ""}
-          label="Modern Spellings/Names" />
         <Input
           name="start"
           value={start|| ""}
@@ -76,6 +65,17 @@ export default ({selectedMap, onSubmit}) => {
           value={end || ""}
           type="date"
           label="End date" />
+
+        <Input
+          name="location"
+          value={location || ""}
+          required
+          help="Format like: '49.038315, 28.107158'"
+          label="GIS/ Lat & Long" />
+        <Input
+          name="place"
+          value={place || ""}
+          label="Modern Spellings/Names" />
         <Input
           name="media"
           value={media || ""}
