@@ -2287,7 +2287,7 @@ my.Map = Backbone.View.extend({
   //
   _setupMap: function(){
     var self = this;
-    this.map = new L.Map(this.$map.get(0));
+      this.map = new L.Map(this.$map.get(0));
 
       var mapUrl = "https://api.mapbox.com/styles/v1/nolski/cj9vrvt1n53pi2rt240oww7ja/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoibm9sc2tpIiwiYSI6IlhTS3lpb1EifQ.jPZ2V9H2FOZX5rDi8sh1eg";
     var osmAttribution = 'Map data &copy; 2011 OpenStreetMap contributors, Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">';
@@ -2308,7 +2308,7 @@ my.Map = Backbone.View.extend({
         this);
     this.features = new L.GeoJSON(null, this.geoJsonLayerOptions);
 
-    this.map.setView([0, 0], 2);
+    this.map.setView(new L.latLng(41.139365, 86.794922), 2);
 
     this.mapReady = true;
   },
