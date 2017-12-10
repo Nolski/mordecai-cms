@@ -35,18 +35,18 @@ class Description extends Component {
     const textList = text.split('\n').map((n, i) => <p key={i}>{n}</p>)
     return (
       <div>
-        {place && <p><strong>Location:</strong> {place}</p>}
+        {place && <p><strong>Modern Name/Spelling:</strong> {place}</p>}
         <p>{textList}</p>
         {census &&
-        <div><strong>Census Data:</strong><br/>
-           {cList}</div>}
+         <p><strong>1897 Russian Empire Census Data:</strong><br/>
+           {cList}</p>}
         {notes && <p><strong>Notes:</strong><br />
           {noteList}</p>}
 
         {sources && <div><strong>Additional Sources:</strong><br/>
-           {sList}</div>}
+          {sList}</div>}
         {media && <div><strong>Additional Media:</strong><br/>
-           {mList}</div>}
+          {mList}</div>}
       </div>
     )
   }
