@@ -28,14 +28,15 @@ const emptyEvent = {
 class Description extends Component {
   render() {
     const { text, place, census, notes, media, sources } = this.props
-    const cList = census && census.split('\n').map((c, i) => <div key={i}>{c}</div>)
-    const sList = sources && sources.split('\n').map((s, i) => <div key={i}>{s}</div>)
-    const mList = media && media.split('\n').map((m, i) => <div key={i}>{m}</div>)
+    const cList = census && census.split('\n').map((c, i) => <p key={i}>{c}</p>)
+    const sList = sources && sources.split('\n').map((s, i) => <p key={i}>{s}</p>)
+    const mList = media && media.split('\n').map((m, i) => <p key={i}>{m}</p>)
     const noteList = notes && notes.split('\n').map((n, i) => <p key={i}>{n}</p>)
+    const textList = text.split('\n').map((n, i) => <p key={i}>{n}</p>)
     return (
       <div>
         {place && <p><strong>Location:</strong> {place}</p>}
-        <p>{text}</p>
+        <p>{textList}</p>
         {census &&
         <div><strong>Census Data:</strong><br/>
            {cList}</div>}
