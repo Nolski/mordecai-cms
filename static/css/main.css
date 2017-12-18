@@ -2003,7 +2003,9 @@ ol.default {
   color: #444;
   padding: 0 10px; }
   .body-text p {
-    color: rgba(255, 255, 255, 0.75); }
+    color: rgba(255, 255, 255, 0.75);
+    text-align: justify;
+  }
   .body-text .caption {
     margin: 5px 0;
     color: rgba(255, 255, 255, 0.6); }
