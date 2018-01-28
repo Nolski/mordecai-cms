@@ -28,3 +28,15 @@ class Local(Common):
     EMAIL_HOST = 'localhost'
     EMAIL_PORT = 1025
     EMAIL_BACKEND = values.Value('django.core.mail.backends.console.EmailBackend')
+
+    DATABASES = Common.DATABASES
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': '',
+            'HOST': 'postgres',
+            'PORT': '5432',
+        }
+    }
