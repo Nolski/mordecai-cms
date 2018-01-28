@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM nikolaik/python-nodejs:latest
 ENV PYTHONUNBUFFERED 1
 
 # Allows docker to cache installed dependencies between builds
@@ -8,6 +8,10 @@ RUN pip install -r /requirements.txt
 
 # Adds our application code to the image
 COPY . /code/
+WORKDIR /code/cms-app/
+
+RUN yarn
+
 WORKDIR /code
 
 EXPOSE 8000

@@ -18,3 +18,15 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
+  # js:
+  #   restart: always
+  #   image: web
+  #   build: ./
+  #   command: >
+  #     bash -c "cd ./cms-app/ && yarn start"
+  #   volumes:
+  #     - ./:/code
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - web
