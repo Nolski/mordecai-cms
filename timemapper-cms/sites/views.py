@@ -25,6 +25,10 @@ class JewishLifeView(TemplateView):
     template_name = 'jewish-life.html'
 
 
+class MordechiView(TemplateView):
+    template_name = 'mordechi.html'
+
+
 class CMSView(LoginRequiredMixin, TemplateView):
     template_name = 'cms.html'
     login_url = '/login/'

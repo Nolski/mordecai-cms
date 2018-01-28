@@ -10,7 +10,7 @@ from rest_framework.routers import DefaultRouter
 
 from users.views import UserViewSet
 from timemapper.views import TimeMapViewSet
-from sites.views import HomeView, MapView, AboutView, CMSView, RebellionView, ArmyLifeView, JewishLifeView
+from sites.views import HomeView, MapView, AboutView, CMSView, RebellionView, ArmyLifeView, JewishLifeView, MordechiView
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^about/boxer-rebellion/?$', RebellionView.as_view()),
     url(r'^about/army-life/?$', ArmyLifeView.as_view()),
     url(r'^about/jewish-life/?$', JewishLifeView.as_view()),
+    url(r'^about/mordechi/?$', MordechiView.as_view()),
     url(r'^map/$', MapView.as_view()),
     url(r'^cms/$', CMSView.as_view()),
 
